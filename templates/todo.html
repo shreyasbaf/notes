@@ -1,0 +1,124 @@
+<html>
+<style>
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+input[id ='1'] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+</style>
+<body>
+
+        <h2>Department of Computer Science and Engineering</h2>
+        <ul>
+                <li><a href="http://localhost:8000/home">Home</a></li>
+                <li><a href="http://localhost:8000/todo/">News</a></li>
+                <li class="dropdown">
+                  <a href="javascript:void(0)" class="dropbtn">Notes</a>
+                  <div class="dropdown-content">
+                    <a href="#">3rd Semester</a>
+                    <a href="#">4th Semester</a>
+                    <a href="#">5th Semester</a>
+                    <a href="#">6th Semester</a>
+                    <a href="#">7th Semester</a>
+                    <a href="#">8th Semester</a>
+                  </div>
+                </li>
+                <li><a href="#">Photo Gallery</a></li>
+                <li><a href="http://localhost:8000/changeorder/">Change Status</a></li>
+                <li><a href="http://localhost:8000/totrack/">Track Order</a></li>
+                <li><a href="http://localhost:8000/vieworder/">View Orders</a></li>
+                <li><a href="http://localhost:8000/logout/">Logout</a></li>
+              </ul><br>
+<h2>News</h2>
+        {% for xx in all_items %}
+        <h2>
+           {{xx.content}}
+            <form action = "/deleteTodo/{{xx.id}}/" 
+            style="display:inline;"
+            method="post">{% csrf_token %}
+                <input type="submit" Value = "Delete"/>
+                </form><br>
+        </h2>
+        {% endfor %}
+
+<form action = "/addTodo/" method="post">{% csrf_token %}
+<input type="text"  placeholder = "Add Data Here"name ="content"/>
+<input type="submit" id = "1" Value = "Add"/>
+</form>
+
+</body>
+</html>
+

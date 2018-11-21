@@ -1,0 +1,62 @@
+<html>
+<style>
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+input[id ='1'] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+</style>
+<body>
+<h1>ToDo Template</h1>
+        <table>
+        <tr>
+                <th>Id</th>
+                <th>Quest</th>
+                <th>Date</th>
+        </tr>
+        {% for xx in all_items %}
+        
+                
+                <tr>
+                    <td>
+                        {{xx.id}}
+                    </td>
+                    <td>
+                        {{xx.question_text}}
+                    </td>
+                    <td>
+                        {{xx.pub_date}}
+                    </td>
+                </tr>
+            
+        {% endfor %}
+    </table>
+
+<form action = "/addQuestion/" method="post">{% csrf_token %}
+<input type="text"  placeholder = "Add Data Here" name ="question_text"/>
+<input type="submit" id = "1" Value = "Add"/>
+</form>
+
+</body>
+</html>
